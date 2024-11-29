@@ -40,7 +40,20 @@ INSTALLED_APPS = [
     'rest_framework',
     'core',
     'rest_framework.authtoken',
+    'drf_yasg',
 ]
+# Agar siz `DEBUG = False` bo'lsa ham Swaggerni ko'rsatmoqchi bo'lsangiz:
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Token': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization',
+            'description': 'Add "Token <your_token>" as value for Authorization header.',
+        },
+    },
+}
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':[
         'rest_framework.authentication.TokenAuthentication',

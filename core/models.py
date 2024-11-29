@@ -42,10 +42,6 @@ class News(models.Model):
 
 # Fikrlar
 class Feedback(models.Model):
-    user_name = models.CharField(max_length=255)
-    user_email = models.EmailField()
-    message = models.TextField()
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    message = models.TextField() 
     created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user_name

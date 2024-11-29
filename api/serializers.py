@@ -20,7 +20,7 @@ class NewsListSerializer(ModelSerializer):
 class NewsDetailSerializer(ModelSerializer):
     class Meta:
         model = News
-        fields = ['id', 'name',]
+        fields = ['id', 'title',]
 
 class CurseCreatelistSerializer(ModelSerializer):
     class Meta:
@@ -32,16 +32,14 @@ class CourseDetailSerializer(ModelSerializer):
         model = Course
         fields = ['id', 'title',]
 
+class FeedbackDetailSerializer(ModelSerializer):
+    class Meta:
+        model = Feedback
+        fields = ['id', 'user', 'message', 'created_at']
+
 
 class FeedbackCreateSerializer(ModelSerializer):
     class Meta:
         model = Feedback
-        fields = ['user_name', 'user_email', 'content',]
-
-
-class FeedbackDetailSerializer(ModelSerializer):
-    class Meta:
-        model = Feedback
-        fields = '__all__'
-
+        fields = '__all__' 
 
