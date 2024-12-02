@@ -51,29 +51,50 @@ class FeedbackDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = FeedbackDetailSerializer
     queryset = Feedback.objects.all()
 
-
-
-
-
 @api_view(['POST'])
 def log_in(request):
     username = request.data.get('username')
     password = request.data.get('password')
     user = authenticate(username=username, password=password)
     if user is not None:
-        token_key , _ = Token.objects.get_or_create(username=user)
+        # user bilan token olish
+        token_key, _ = Token.objects.get_or_create(user=user)
         context = {
-            'success' : True,
+            'success': True,
             'username': user.username,
-            'key' : token_key.key
-        }      
-
+            'key': token_key.key
+        }
     else:
         context = {
-            'success' : False,
-            'error' : 'Invalid credentials.'
+            'success': False,
+            'error': 'Invalid credentials.'
         }
     return Response(context)
+
+
+
+
+# @api_view(['POST'])
+# def log_in(request):
+#     username = request.data.get('username')
+#     password = request.data.get('password')
+#     user = authenticate(username=username, password=password)
+#     if user is not None:
+#         token_key , _ = Token.objects.get_or_create(username=user)
+#         context = {
+#             'success' : True,
+#             'username': user.username,
+#             'key' : token_key.key
+#         }   
+   
+
+#     else:
+#         context = {
+#             'success' : False,
+#             'error' : 'Invalid credentials.'
+#         }
+#         print(username)
+#     return Response(context)
   
 @api_view(['POST'])
 def log_out(request):
