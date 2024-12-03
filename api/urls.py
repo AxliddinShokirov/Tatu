@@ -44,6 +44,6 @@ urlpatterns = [
     path('say_hello/', say_hello, name='say-hello'),  # Test authentication
 
     # Swagger documentation endpoints
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),  # Redoc UI
 ]
